@@ -34,7 +34,7 @@ class PremiseField {
 	 * 
 	 * @var array
 	 */
-	protected $deaults = array(
+	protected $defaults = array(
 		'type' 	  		  => 'text',		//i.e. textarea, select, checkbox, file
 		'name' 	  		  => '',
 		'id' 	  		  => '',
@@ -46,6 +46,7 @@ class PremiseField {
 		'class' 	  	  => '',  			//custom class for easy styling
 		'attribute' 	  => '',			//Additional html attributes to add to element i.e. onchange="premiseSelectBackground()"
 		'options'		  => array(),		//holds different options depending on the type of field
+		'template' 		  => 'default',		//default template
 	);
 
 
@@ -163,7 +164,7 @@ class PremiseField {
 	 */
 	protected function build_field() {
 
-		$html .= '<div class="field';
+		$html  = '<div class="field';
 		$html .= !empty( $this->field['class'] ) ? ' ' . $this->field['class'] . '">' : '">';
 
 		$html .= $this->label;
@@ -239,18 +240,20 @@ class PremiseField {
 
 		$field  = '<input type="'. $this->field['type'] .'"';
 
-		$field .= !empty( $this->field['name'] ) 		? 'name="'. $this->field['name'] .'"' 	: '';
-		$field .= !empty( $this->field['id'] ) 			? 'id="'. $this->field['id'] .'"' 		: '';
-		$field .= !empty( $this->field['value'] ) 		? 'value="'. $this->field['value'] .'"' : '';
-		$field .= !empty( $this->field_class )			? 'class="'. $this->field_class .'"'	: '';
-		$field .= !empty( $this->field['attribute'] ) 	? $this->field['attribute'] 			: '';
+		$field .= !empty( $this->field['placeholder'] ) ? 'placeholder="'.$this->field['placeholder'].'"' 	: '';
+
+		$field .= !empty( $this->field['name'] ) 		? 'name="'. $this->field['name'] .'"' 				: '';
+		$field .= !empty( $this->field['id'] ) 			? 'id="'. $this->field['id'] .'"' 					: '';
+		$field .= !empty( $this->field['value'] ) 		? 'value="'. $this->field['value'] .'"' 			: '';
+		$field .= !empty( $this->field_class )			? 'class="'. $this->field_class .'"'				: '';
+		$field .= !empty( $this->field['attribute'] ) 	? $this->field['attribute'] 						: '';
 		
 		$field .= '>';
 
 		/**
 		 * add buttons if file or fa-icon field
 		 */
-		switch( $this->field['type'] ) {
+		switch( $this->wrapper ) {
 			case 'file':
 				$field .= $this->btn_upload_file;
 				$field .= $this->btn_remove_file;
@@ -303,7 +306,7 @@ class PremiseField {
 		$field .= !empty( $this->field['class'] ) 		? 'class="'. $this->field['class'] .'"' 	: '';
 		$field .= !empty( $this->field['attribute'] ) 	? $this->field['attribute'] 				: '';
 
-		$field .= checked( $this->field['value'], $this->field['value_att'], false );
+		$field .= ($this->field['value'] == $this->field['value_att']) ? 'checked="checked"' : '';
 
 		$field .= '>';
 
@@ -335,7 +338,7 @@ class PremiseField {
 				$field .= !empty( $radio['id'] ) 				? 'id="'.$radio['id'].'"' 			: '';
 				$field .= !empty( $radio['value_att'] ) 		? 'value="'.$radio['value_att'].'"' : '';
 				
-				$field .= checked( $this->field['value'], $radio['value_att'], false );
+				$field .= ($this->field['value'] == $radio['value_att']) ? 'checked="checked"' : '';
 
 				$field .= '>';
 
@@ -390,7 +393,7 @@ class PremiseField {
 		else {
 			foreach ($this->field['options'] as $key => $value) {
 				$options .= '<option  value="'.$value.'"';
-				$options .= selected( $this->field['value'], $value, false );
+				$options .= ($this->field['value'] == $value) ? 'selected="selected"' : '';
 				$options .= '>'.$key.'</option>';
 			}	
 		}
@@ -452,6 +455,11 @@ class PremiseField {
 				break;
 
 
+			case 'datepicker':
+				$this->field['type'] = 'text';
+				$this->field_class = 'premise-date-field';
+				break;
+
 			case 'color':
 			case 'minicolors':
 				$this->wrapper = 'color';
@@ -464,7 +472,7 @@ class PremiseField {
 				$this->wrapper = 'file';
 				$this->field['type'] = 'text';
 				$this->field_class = 'premise-file-url';
-				$this->btn_upload_file = '<a class="premise-btn-upload" href="javascript:void(0);" onclick="premiseUploadFile(this, '.$multiple.', \''.$preview.'\')"><i class="fa fa-fw fa-upload"></i></a>';
+				$this->btn_upload_file = '<a class="premise-btn-upload" href="javascript:void(0);" onclick="premiseUploadFile(this)"><i class="fa fa-fw fa-upload"></i></a>';
 				$this->btn_remove_file = '<a class="premise-btn-remove" href="javascript:void(0);" onclick="premiseRemoveFile(this)"><i class="fa fa-fw fa-times"></i></a>';
 				break;
 

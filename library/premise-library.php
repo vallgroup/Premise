@@ -11,6 +11,55 @@
 
 
 
+/*
+
+	PREMISE GLOBAL LIBRARY
+---------------------------------------------------
+ */
+
+
+/**
+ * Premise Head
+ *
+ * Inserts the apropriate links and scripts into head of DOM
+ * 
+ * @return string html
+ */
+function premise_head() {
+	$rootPath 	= $_SERVER['DOCUMENT_ROOT'];
+	$premPath 	= PREMISE_PATH;
+	$dir 		= str_replace($rootPath, '', $premPath);
+
+	$css  = '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">';
+	$css .= '<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />';
+	$css .= '<link rel="stylesheet" href="'. $dir .'/includes/minicolors/jquery.minicolors.css" id="PremiseMinicolors">';
+	$css .= '<link rel="stylesheet" href="'. $dir .'/css/premise.css" id="PremiseCSS">';
+
+	$js   = '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>';
+	$js  .= '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>';
+	$js  .= '<script src="'. $dir .'/includes/minicolors/jquery.minicolors.min.js" id="PremiseMinicolorsJS"></script>';
+	$js  .= '<script src="'. $dir .'/js/premise.js" id="PremiseJS"></script>';
+
+	echo $css;
+	echo $js;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+	PREMISE FORMS LIBRARY
+---------------------------------------------------
+ */
+
 
 /**
  * create a field instance
@@ -72,13 +121,19 @@ function premise_field_section( $args = array(), $echo = true ) {
 
 	$html .= !empty( $field_section['container_title'] ) ? '<h3>' . $field_section['container_title'] . '</h3>' : '';
 
-	$html .= !empty( $field_section['container_title'] ) ? '<p>' . $field_section['container_desc'] . '</p>' : '';
+	$html .= !empty( $field_section['container_desc'] ) ? '<p>' . $field_section['container_desc'] . '</p>' : '';
 
 	$html .= premise_field( $field_section['fields'], false );
 
 	$html .= !empty( $field_section['container_inner_class'] ) ? '</div>' : '';
 
-	$html  = ( true === $field_section['container'] ) ? '</div>' : '';
+	$html .= ( true === $field_section['container'] ) ? '</div>' : '';
+
+	if( !$echo )
+		return $html;
+	else
+		echo $html;
+	
 }
 
 
