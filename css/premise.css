@@ -27,7 +27,7 @@ label {
     position: relative;
 }
 
-.tfwk-fixed {
+.premise-fixed {
     /*position:fixed;*/
 }
 
@@ -439,13 +439,9 @@ ul.inline > li {
     border-top:1px solid #ccc;
     border-bottom:1px solid #ccc;
     border-left:1px solid #ccc;
+}
+.field > .radio > input[type="radio"] + label:last-child {
     border-right:1px solid #ccc;
-}
-.field > .radio > input[type="radio"]:first-child + label {
-    border-right:0;
-}
-.field > .radio > input[type="radio"]:last-child + label {
-    border-left:0;
 }
 .field > .radio > input[type="radio"]:checked + label {
     background:#ddd;
@@ -495,8 +491,12 @@ ul.inline > li {
 }
 
 
+/* File fields */
+
+
+
 /* Buttons Styles */
-.tfwk-btn {
+.premise-btn {
     display:inline-block;
     border:0;
     padding:5px 15px;
@@ -506,20 +506,20 @@ ul.inline > li {
     font-weight:inherit;
 }
 
-.tfwk-btn-submit {
+.premise-btn-submit {
     border:1px solid #ccc;
     background:#fff;
 }
 
-.tfwk-btn-sm {
+.premise-btn-sm {
     padding:10px 20px;
 }
 
-.tfwk-btn-lg {
+.premise-btn-lg {
     padding:15px 30px;
 }
 
-.tfwk-btn-xlg {
+.premise-btn-xlg {
     padding:20px 40px;
 }
 
@@ -592,11 +592,11 @@ ul.inline > li {
 
 
 
-.tfwk-count-elements{
+.premise-count-elements{
     position:relative;
     overflow:auto;
 }
-.tfwk-count-elements span.tfwk-counter{
+.premise-count-elements span.premise-counter{
     display:none;
     position:absolute;
 }
@@ -653,10 +653,10 @@ ul.inline > li {
 
 
 /*Tabs*/
-.tfwk-active-tab-content {
+.premise-active-tab-content {
     display:block;
 }
-.tfwk-hide-tab-content {
+.premise-hide-tab-content {
     display:none;
 }
 
@@ -668,7 +668,7 @@ ul.inline > li {
 
 
 /* Shortcodes */
-#tfwk-sc-dialog {
+#premise-sc-dialog {
     position:fixed;
     top:20%;
     left:20%;
@@ -691,7 +691,7 @@ ul.inline > li {
 
 
 /* Ajax  */
-#tfwk-ajax {
+#premise-ajax {
     position:fixed;
     top:0;
     left:0;
@@ -702,7 +702,7 @@ ul.inline > li {
     z-index:999999;
 }
 
-#tfwk-ajax .tfwk-ajax-overlay {
+#premise-ajax .premise-ajax-overlay {
     position:absolute;
     top:0;
     left:0;
@@ -713,7 +713,7 @@ ul.inline > li {
     cursor: pointer;
 }
 
-#tfwk-ajax .tfwk-ajax-inner {
+#premise-ajax .premise-ajax-inner {
     position:absolute;
     top:10%;
     left:10%;
@@ -732,7 +732,7 @@ ul.inline > li {
     border:2px solid #333;
 }
 
-#tfwk-ajax .tfwk-ajax-timer {
+#premise-ajax .premise-ajax-timer {
     position:absolute;
     top:50%;
     left:50%;
@@ -741,7 +741,7 @@ ul.inline > li {
     margin: -30px 0 0 -30px;
     padding:10px;
 }
-#tfwk-ajax .tfwk-ajax-timer:after {
+#premise-ajax .premise-ajax-timer:after {
     display:block;
     content: 'loading..';
     text-align:center;

@@ -243,7 +243,7 @@ class PremiseField {
 		$field .= !empty( $this->field['placeholder'] ) ? 'placeholder="'.$this->field['placeholder'].'"' 	: '';
 
 		$field .= !empty( $this->field['name'] ) 		? 'name="'. $this->field['name'] .'"' 				: '';
-		$field .= !empty( $this->field['id'] ) 			? 'id="'. $this->field['id'] .'"' 					: '';
+		$field .= !empty( $this->field['id'] ) && 'file' !== $this->wrapper 			? 'id="'. $this->field['id'] .'"' 					: '';
 		$field .= !empty( $this->field['value'] ) 		? 'value="'. $this->field['value'] .'"' 			: '';
 		$field .= !empty( $this->field_class )			? 'class="'. $this->field_class .'"'				: '';
 		$field .= !empty( $this->field['attribute'] ) 	? $this->field['attribute'] 						: '';
@@ -257,6 +257,7 @@ class PremiseField {
 			case 'file':
 				$field .= $this->btn_upload_file;
 				$field .= $this->btn_remove_file;
+				$field .= $this->file_field();
 				break;
 
 			case 'fa-icon':
@@ -379,6 +380,19 @@ class PremiseField {
 
 
 
+	protected function file_field() {
+		
+		$field  = '<div '.$this->field['attribute'].' data-action="'.$this->field['options']['url'].'" id="'.$this->field['id'].'" data-name="'.$this->field['name'].'" style="display:none;"></div>';
+
+		return $field;
+	}
+
+
+
+
+
+
+
 	protected function select_options() {
 		
 		$options = '';
@@ -441,6 +455,7 @@ class PremiseField {
 	 * class properties needed to build a particular field
 	 */
 	protected function prepare_field() {
+		$this->field['id'] = !empty( $this->field['id'] ) ? $this->field['id'] : $this->field['name'];
 
 		$this->label  = !empty( $this->field['label'] ) 												? '<label for="'.$this->field['id'].'">'.$this->field['label'].'</label>' 	: '';
 		$this->label .= ( !empty( $this->field['label'] ) && !empty( $this->field['tooltip'] ) ) 		? '<span class="tooltip"><i>'.$this->field['tooltip'].'</i></span>' 		: '';
@@ -472,7 +487,7 @@ class PremiseField {
 				$this->wrapper = 'file';
 				$this->field['type'] = 'text';
 				$this->field_class = 'premise-file-url';
-				$this->btn_upload_file = '<a class="premise-btn-upload" href="javascript:void(0);" onclick="premiseUploadFile(this)"><i class="fa fa-fw fa-upload"></i></a>';
+				$this->btn_upload_file = '<a class="premise-btn-upload" href="javascript:void(0);" onclick="premiseUploadFile(\'#'.$this->field['id'].'\')"><i class="fa fa-fw fa-upload"></i></a>';
 				$this->btn_remove_file = '<a class="premise-btn-remove" href="javascript:void(0);" onclick="premiseRemoveFile(this)"><i class="fa fa-fw fa-times"></i></a>';
 				break;
 

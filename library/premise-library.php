@@ -38,6 +38,7 @@ function premise_head() {
 	$js   = '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>';
 	$js  .= '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>';
 	$js  .= '<script src="'. $dir .'/includes/minicolors/jquery.minicolors.min.js" id="PremiseMinicolorsJS"></script>';
+	$js  .= '<script src="'. $dir .'/js/dropzone.js" id="PremiseDropZoneJS"></script>';
 	$js  .= '<script src="'. $dir .'/js/premise.js" id="PremiseJS"></script>';
 
 	echo $css;
