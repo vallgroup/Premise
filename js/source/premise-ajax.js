@@ -1,45 +1,11 @@
-
-
-var Premise = {
-	Dropzone: null,
-	loadingTimer: '<span class="premise-ajax-timer"><i class="fa fa-3x fa-spinner fa-spin"></i></span>'
-}
-
-
-
-premiseInit()
-
-
-
-
-
-/*
-
-	Global
-
- */
-
-function premiseInit() {
-
-	jQuery(function($){
-
-		premiseFormsInit()
-
-	})
-	console.log('Premise initiated successfully')
-
-}
-
-
-
-
-
-
 /*
 
 	Ajax
 
  */
+
+
+
 /**
  * create elements needed for an AJax request if they 
  * don't already exist in the DOM
@@ -153,71 +119,3 @@ function premiseLoadAjax(url, data) {
 	return false;
 }
 
-
-
-
-
-
-/*
-
-	Forms
-
- */
-
-function premiseFormsInit() {
-	premiseDateField()
-	premiseMinicolors()
-}
-
-
-
-function premiseDateField( el ) {
-	el = 'undefined' !== typeof el ? jQuery(el) : jQuery('.premise-date-field')
-
-	el.datepicker();
-}
-
-
-
-function premiseMinicolors( el ) {
-	el = 'undefined' !== typeof el ? jQuery(el) : jQuery('.premise-minicolors')
-
-	el.minicolors();
-}
-
-
-
-function premiseUploadFile( elID ) {
-	elID = 'undefined' !== typeof elID ? jQuery(elID) : null
-
-	if( !elID )
-		return false;
-	else
-		var el = elID;
-
-	var id = 'undefined' !== typeof el.attr('id') ? '#'+el.attr('id') : null
-	var url = 'undefined' !== typeof el.attr('data-action') ? el.attr('data-action') : '/'
-	var name = 'undefined' !== typeof el.attr('data-name') ? el.attr('data-name') : 'file'
-
-	var params = { 
-		url:  url,
-		paramName: name,
-		uploadMultiple: true,
-		autoProcessQueue: false
-	}
-
-	console.log(id)
-
-	jQuery(document).trigger('premiseBeforeDropZone');
-
-	Premise.Dropzone = new Dropzone( id, params )
-
-	// el.dropzone({ 
-	// 	url:  url,
-	// 	paramName: name,
-	// 	uploadMultiple: true,
-	// 	autoProcessQueue: false
-	// });
-
-	el.fadeIn('fast')
-}

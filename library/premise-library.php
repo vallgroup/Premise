@@ -33,13 +33,13 @@ function premise_head() {
 	$css  = '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">';
 	$css .= '<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />';
 	$css .= '<link rel="stylesheet" href="'. $dir .'/includes/minicolors/jquery.minicolors.css" id="PremiseMinicolors">';
-	$css .= '<link rel="stylesheet" href="'. $dir .'/css/premise.css" id="PremiseCSS">';
+	$css .= '<link rel="stylesheet" href="'. $dir .'/css/premise.min.css" id="PremiseCSS">';
 
 	$js   = '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>';
 	$js  .= '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>';
 	$js  .= '<script src="'. $dir .'/includes/minicolors/jquery.minicolors.min.js" id="PremiseMinicolorsJS"></script>';
-	$js  .= '<script src="'. $dir .'/js/dropzone.js" id="PremiseDropZoneJS"></script>';
-	$js  .= '<script src="'. $dir .'/js/premise.js" id="PremiseJS"></script>';
+	$js  .= '<script src="'. $dir .'/includes/dropzone/dropzone.js" id="PremiseDropZoneJS"></script>';
+	$js  .= '<script src="'. $dir .'/js/premise.min.js" id="PremiseJS"></script>';
 
 	echo $css;
 	echo $js;
