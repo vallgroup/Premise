@@ -257,6 +257,7 @@ class PremiseField {
 		 */
 		switch( $this->wrapper ) {
 			case 'file':
+				$field = '';
 				$field .= $this->btn_upload_file;
 				$field .= $this->btn_remove_file;
 				$field .= $this->file_field();

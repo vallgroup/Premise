@@ -27,6 +27,8 @@ PremiseField = {
 
 		premiseFormsInit();
 		this.dropzoneReady();
+
+		this.dropzoneOnSuccess();
 	},
 
 
@@ -43,7 +45,7 @@ PremiseField = {
 		var el = this.fields.imgUpload;
 
 		var id   = 'undefined' !== typeof el.attr('id')          ? '#'+el.attr('id')      : null;
-		console.log(el);
+
 		var url  = 'undefined' !== typeof el.attr('data-action') ? el.attr('data-action') : '/';
 		var name = 'undefined' !== typeof el.attr('data-name')   ? el.attr('data-name')   : 'file';
 
@@ -57,6 +59,19 @@ PremiseField = {
 		jQuery(document).trigger('premiseBeforeDropZone', params, el);
 
 		this.dropzone = new Dropzone( id, params );
+
+		console.log(this.dropzone);
+
+		this.dropzone.on("complete", function(file) {
+			console.log(file);
+		});
+	},
+
+
+
+
+	dropzoneOnSuccess: function() {
+		
 	}
 }
 

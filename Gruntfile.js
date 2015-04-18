@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		// watch for changes and trigger csslint, autoprefixer, cssmin, jshint, uglify and livereload
 		watch: {
 			options: {
-				livereload: true,
+				livereload: false,
 			},
 			css: {
 				files: ['css/source/*.css'],
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 			// https://github.com/gruntjs/grunt-contrib-watch#live-reloading
 			livereload: {
 				options: {
-					livereload: true
+					livereload: false
 				},
 				// reload page when css, js, images or php files changed
 				files: ['css/*.css', 'js/*.js', 'img/**/*.{png,jpg,jpeg,gif,webp,svg}', '**/*.php']
